@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class Post(models.Model):        
+class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -18,6 +18,7 @@ class Post(models.Model):
                               blank=True,
                               related_name='group'
                               )
+
     def __str__(self):
         return self.text
 
@@ -29,7 +30,7 @@ class Group(models.Model):
 
     def __str__(self):
         return self.title
-    
-    
+
+
 class Meta:
     ordering = ['pub_date']

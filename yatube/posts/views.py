@@ -5,6 +5,7 @@ from .models import Group
 
 FIRST_TEN_POST = settings.FIRST_TEN_POST
 
+
 def index(request):
     posts = Post.objects.order_by()[:FIRST_TEN_POST]
     # В словаре context отправляем информацию в шаблон
