@@ -1,3 +1,15 @@
 {% load static %}
 
-<img src="{% static 'img/logo.png' %}">
+      <!-- Использованы классы бустрапа для создания типовой навигации с логотипом -->
+      <!-- В дальнейшем тут будет создано полноценное меню -->
+      <nav class="navbar navbar-light" style="background-color: lightskyblue">
+        <div class="container">
+          <!-- IEA :: IzotovEA :: change href :: add {url} -->
+          <a class="navbar-brand" href= "{% url 'Post:index' %}" >
+            <!-- IEA :: IzotovEA :: change src :: add {static} -->
+            <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <!-- тег span используется для добавления нужных стилей отдельным участкам текста -->
+            <span style="color:red">Ya</span>tube
+          </a>
+        </div>
+      </nav> 
