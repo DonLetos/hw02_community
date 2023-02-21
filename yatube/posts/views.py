@@ -4,7 +4,7 @@ from .models import Post, User
 from .models import Group
 from users.forms import ContactForm
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 FIRST_TEN_POST = settings.FIRST_TEN_POST
@@ -42,10 +42,10 @@ def group_posts(request, slug):
     # post_list = Post.objects.filter(group=group).all()
     # paginator = Paginator(post_list, FIRST_TEN_POST)
     # page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
+    # page_obj = paginator.get_page(page_number) posts,# post_list,
     context = {
         'group': group,
-        'posts': posts, # post_list,
+        'posts': posts,
         'title': 'Записи сообщества ' + str(group),
         # 'page_obj': page_obj
     }
