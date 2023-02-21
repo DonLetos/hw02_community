@@ -1,5 +1,6 @@
+# from django.contrib.auth import get_user_model
 from django.db import models
-from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 class Contact(models.Model):
@@ -8,4 +9,3 @@ class Contact(models.Model):
     subject = models.CharField(max_length=100)
     body = models.TextField()
     is_answered = models.BooleanField(default=False)
-    

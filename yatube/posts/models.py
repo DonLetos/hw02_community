@@ -25,6 +25,7 @@ class Post(models.Model):
     class Meta:
         ordering = ['-pub_date']
 
+
 class Group(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
