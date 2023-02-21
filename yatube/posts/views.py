@@ -35,19 +35,19 @@ def index(request):
     return render(request, 'posts/index.html', context)
 
 
-@login_required
+# @login_required
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-
-    post_list = Post.objects.filter(group=group).all()
-    paginator = Paginator(post_list, FIRST_TEN_POST)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    # post_list = Post.objects.filter(group=group).all()
+    # paginator = Paginator(post_list, FIRST_TEN_POST)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
     context = {
         'group': group,
-        'posts': post_list,
+        'posts': posts, # post_list,
         'title': 'Записи сообщества ' + str(group),
-        'page_obj': page_obj
+        # 'page_obj': page_obj
     }
     return render(request, 'posts/group_list.html', context)
 

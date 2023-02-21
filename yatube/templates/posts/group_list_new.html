@@ -1,0 +1,25 @@
+<!-- IEA :: IzotovEA :: change:: conect {static} -->
+{% extends 'base.html' %} 
+{% load static %}
+  <body>    
+      {% block content %}   
+        <h1>{{title}}</h1>
+      {% for post in page_obj %}
+      <article>
+        <ul>
+          <li>Автор: {{post.author.get_full_name }}>{{ post.author.get_full_name }}</li>
+          <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
+          <li>Текст: {{post.text}}</li>
+          <p>{{ post.text }}</p>
+        </ul>
+        
+      </article>
+      {% if not forloop.last %}
+          <hr>
+      {% endif %}
+      {% endfor %}
+      <!-- IEA :: IzotovEA :: add:: conect {paginator.html} -->
+      {% include 'posts/includes/paginator.html' %}
+      {% endblock %}
+        <!-- под последним постом нет линии -->  
+  </body>

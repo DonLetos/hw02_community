@@ -213,7 +213,8 @@ class TestGroupView:
             assert False, 'Страница `/group/<slug>/` не найдена, проверьте этот адрес в *urls.py*'
 
         if response.status_code != 200:
-            assert False, 'Страница `/group/<slug>/` работает неправильно.'
+            assert False, f'Страница `/group/<slug>/` работает неправильно.'
+
         group = post_with_group.group
         html = response.content.decode()
 
