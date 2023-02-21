@@ -1,18 +1,10 @@
 <!-- IEA :: IzotovEA :: change:: conect {static} -->
 {% extends 'base.html' %} 
 {% load static %}
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
-    <!--templates.base.html-->
-  </head>
-  <body>
-    <header>
-      <!--templates.includes.header.html-->
-    </header>
-    <main>      
-      {% block content %}
-      {% for post in posts %}
+  <body>    
+      {% block content %}    
+        <h1>{{title}}</h1>
+      {% for post in page_obj %}
       <article>
         <ul>
           <li>Автор: {{post.author.get_full_name }}>{{ post.author.get_full_name }}</li>
@@ -26,13 +18,8 @@
           <hr>
       {% endif %}
       {% endfor %}
+      <!-- IEA :: IzotovEA :: add:: conect {paginator.html} -->
+      {% include 'posts/includes/paginator.html' %}
       {% endblock %}
-        <!-- под последним постом нет линии -->
-      </div>  
-    </main>
-    <footer class="page-footer font-small blue border-top">
-      <div class="footer-copyright text-center py-3">© 2020 Copyright 
-        <p><span style="color:red">Ya</span>tube</p> 
-      </div>    
-    </footer>
+        <!-- под последним постом нет линии -->  
   </body>

@@ -1,21 +1,14 @@
 <!-- IEA :: IzotovEA :: change:: conect {static} -->
 {% extends 'base.html' %} 
 {% load static %}
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
-    <!--templates.base.html-->
-  </head>
   <body>
-    <header>
-      <!--templates.includes.header.html-->
-    </header>
     <main>
       {% block content %}
       <!-- класс py-5 создает отступы сверху и снизу блока -->
       <div class="container py-5">     
         <h1>{{title}}</h1>
-        {% for post in posts %}
+      <!-- IEA :: IzotovEA :: add:: for post in page_obj--> 
+      {% for post in page_obj %}
         <ul>
           <li>
             Автор: {{ post.author.get_full_name }}
@@ -30,17 +23,10 @@
         {% endif %}
         {% if not forloop.last %}<hr>{% endif %}
       {% endfor %} 
+      <!-- IEA :: IzotovEA :: add:: conect {paginator.html} -->
+      {% include 'posts/includes/paginator.html' %}
         <!-- под последним постом нет линии -->
       </div> 
       {% endblock %} 
     </main>
-    <!-- Использованы классы бустрапа: -->
-    <!-- border-top: создаёт тонкую линию сверху блока -->
-    <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
-    <footer class="border-top text-center py-3">
-      <!-- тег span используется для добавления нужных стилей отдельным участкам текста --> 
-      <p>© 2020 Copyright <span style="color:red">Ya</span>tube</p>    
-    </footer>
   </body>
-</html>

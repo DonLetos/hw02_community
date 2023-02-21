@@ -22,6 +22,8 @@ class Post(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        ordering = ['-pub_date']
 
 class Group(models.Model):
     title = models.CharField(max_length=200)
@@ -30,7 +32,3 @@ class Group(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Meta:
-    ordering = ['pub_date']
