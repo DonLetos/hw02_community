@@ -27,10 +27,12 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     # В словаре context отправляем информацию в шаблон
+    x = request.user
     context = {
         'posts': post_list,
         'title': 'Последние обновления на сайте',
         'page_obj': page_obj,
+        'USER': x
     }
     return render(request, 'posts/index.html', context)
 
@@ -117,3 +119,39 @@ def post_detail(request, post_id):
         'post': one_post
     }
     return render(request, 'posts/post_detail.html', context)
+
+def post_create(request):
+    form = PostForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            # post = form.save(commit=False)
+            # post.author = request.user
+            form.instance.author = request.user     
+            form.save()
+            return redirect(f'/profile/{request.author}/')
+
+    context = {
+        'form': form,
+        'is_edit': False
+        }
+    return render(request, 'posts/create_post.html', context)    
+
+
+def post_edit(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    form = PostForm(request.POST, instance=post)
+    if post.author == request.user:
+        if request.method == 'POST':
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user   
+                form.save()
+                return redirect(f'/profile/{request.author}/')
+
+        context = {
+            'form': form,
+            'is_edit': True
+            }
+        return render(request, 'posts/create_post.html', context)  
+    else:
+        post_detail(request, pk)

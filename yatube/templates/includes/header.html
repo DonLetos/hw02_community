@@ -32,10 +32,14 @@
                 {% endif %}"
                 href="{% url 'about:tech' %}">Технологии
               </a>
-              </li>
-              {% if request.user.is_authenticated %}
+              </li>       
+            {% if request.user.is_authenticated %}
               <li class="nav-item"> 
-                <a class="nav-link" href="<!--  -->">Новая запись</a>
+                <a class="nav-link
+                {% if request.resolver_match.view_name  == 'Post:post_create' %}
+                  active
+                {% endif %}"
+                 href="{% url 'Post:post_create' %}">Новая запись</a>
               </li>
               <li class="nav-item"> 
                 <a class="nav-link link-light" href="<!--  -->">Изменить пароль</a>
@@ -49,7 +53,7 @@
               <li>
                 Пользователь: {{ user.username }}
               </li>
-              {% else %}
+            {% else %}
               <li class="nav-item"> 
                 <a class="nav-link link-light         
               {% if request.resolver_match.view_name == 'users:login' %}
@@ -58,11 +62,11 @@
               </li>
               <li class="nav-item"> 
                 <a class="nav-link link-light
-                {% if request.resolver_match.view_name == 'users:signup' %}
+              {% if request.resolver_match.view_name == 'users:signup' %}
                 active
               {% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
               </li>
-              {% endif %}
+            {% endif %}
             </ul>
             {# Конец добавленого в спринте #}
           </div>
